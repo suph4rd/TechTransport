@@ -1,7 +1,7 @@
 from fastapi import Query
 from fastapi.testclient import TestClient
 from sqlalchemy.exc import OperationalError
-from app.db import get_session
+from app.core.db import get_session
 from app.main import app
 
 
@@ -32,7 +32,7 @@ def test_database_failure_does_not_expose_credentials():
 def test_validation_does_not_echo_input():
     from fastapi import FastAPI
     from fastapi.exceptions import RequestValidationError
-    from app.errors import validation_error
+    from app.core.errors import validation_error
     test_app = FastAPI()
     test_app.add_exception_handler(RequestValidationError, validation_error)
 
@@ -65,7 +65,7 @@ def test_database_ready():
 def test_lifespan_disposes_engine(monkeypatch):
     import asyncio
     import pytest
-    from app.lifespan import Lifespan, engine
+    from app.core.lifespan import Lifespan, engine
 
     calls = []
     monkeypatch.setattr(engine, 'dispose', lambda: calls.append(True))

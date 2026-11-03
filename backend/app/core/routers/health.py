@@ -3,8 +3,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
-from app.db import get_session
-from app.errors import error_response
+from app.core.db import get_session
+from app.core.errors import error_response
 
 logger = logging.getLogger("tech_transport")
 router = APIRouter(prefix="/api/health")

@@ -1,7 +1,7 @@
 import logging
 from fastapi import FastAPI
-from app.config import get_settings
-from app.db import engine
+from app.core.config import get_settings
+from app.core.db import engine
 
 logger = logging.getLogger("tech_transport")
 
